@@ -2,8 +2,8 @@ import { Component, Prop, h } from '@stencil/core';
 import { format } from '../../utils/utils';
 
 @Component({
-    tag: 'my-component',
-    styleUrl: 'my-component.scss',
+    tag: 'my-embedded-component',
+    styleUrl: 'my-embedded-component.scss',
     shadow: true
 })
 export class MyComponent {
@@ -27,14 +27,6 @@ export class MyComponent {
     }
 
     render() {
-        return (
-            <div>
-                Hello, World! I'm {this.getText()}
-                <my-embedded-component
-                    first="Bart"
-                    last="Simpson">
-                </my-embedded-component>
-            </div>
-        );
+        return <div>I'm a child {this.getText()}</div>;
     }
 }
