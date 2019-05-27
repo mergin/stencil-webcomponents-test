@@ -24,7 +24,10 @@
 <body class="">
 
     <!-- <my-modal></my-modal> -->
-    <my-modal class="rainbow"></my-modal>
+    <my-modal class="rainbow"
+              title="This is the title"
+              content="This is the content of the modal">
+    </my-modal>
 
     <my-component first="Stencil"
                   last="'Don't call me a framework' JS">
@@ -33,6 +36,23 @@
     <my-component-2 first="Other"
                     last="Component">
     </my-component-2>
+
+    <button id="open">Open Modal</button>
+    <button id="close">Close Modal</button>
+
+    <script>
+        var btnOpen = document.querySelector('button#open');
+        var btnClose = document.querySelector('button#close');
+        var modal = document.querySelector('my-modal');
+        btnOpen.addEventListener('click', function () {
+            // modal.style.display = 'block';
+            modal.open();
+        });
+        btnClose.addEventListener('click', function () {
+            // modal.style.display = 'block';
+            modal.close();
+        });
+    </script>
 
 </body>
 

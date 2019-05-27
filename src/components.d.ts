@@ -52,18 +52,10 @@ export namespace Components {
     'middle': string;
   }
   interface MyModal {
-    /**
-    * The first name
-    */
-    'first': string;
-    /**
-    * The last name
-    */
-    'last': string;
-    /**
-    * The middle name
-    */
-    'middle': string;
+    'close': () => Promise<void>;
+    'content': string;
+    'open': () => Promise<void>;
+    'title': string;
   }
 }
 
@@ -111,18 +103,8 @@ declare namespace LocalJSX {
     'middle'?: string;
   }
   interface MyModal extends JSXBase.HTMLAttributes {
-    /**
-    * The first name
-    */
-    'first'?: string;
-    /**
-    * The last name
-    */
-    'last'?: string;
-    /**
-    * The middle name
-    */
-    'middle'?: string;
+    'content'?: string;
+    'title'?: string;
   }
 
   interface IntrinsicElements {
