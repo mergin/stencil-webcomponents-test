@@ -9,6 +9,7 @@ import { HTMLStencilElement, JSXBase } from '@stencil/core/internal';
 
 
 export namespace Components {
+  interface MyBackdrop {}
   interface MyComponent {
     /**
     * The first name
@@ -52,6 +53,10 @@ export namespace Components {
     'middle': string;
   }
   interface MyModal {
+    'content': string;
+    'title': string;
+  }
+  interface MyModalBundle {
     'close': () => Promise<void>;
     'content': string;
     'open': () => Promise<void>;
@@ -60,6 +65,7 @@ export namespace Components {
 }
 
 declare namespace LocalJSX {
+  interface MyBackdrop extends JSXBase.HTMLAttributes {}
   interface MyComponent extends JSXBase.HTMLAttributes {
     /**
     * The first name
@@ -104,14 +110,21 @@ declare namespace LocalJSX {
   }
   interface MyModal extends JSXBase.HTMLAttributes {
     'content'?: string;
+    'onOnClose'?: (event: CustomEvent<any>) => void;
+    'title'?: string;
+  }
+  interface MyModalBundle extends JSXBase.HTMLAttributes {
+    'content'?: string;
     'title'?: string;
   }
 
   interface IntrinsicElements {
+    'my-backdrop': MyBackdrop;
     'my-component': MyComponent;
     'my-component-2': MyComponent2;
     'my-embedded-component': MyEmbeddedComponent;
     'my-modal': MyModal;
+    'my-modal-bundle': MyModalBundle;
   }
 }
 
@@ -128,6 +141,12 @@ declare module "@stencil/core" {
 declare global {
 
 
+
+  interface HTMLMyBackdropElement extends Components.MyBackdrop, HTMLStencilElement {}
+  var HTMLMyBackdropElement: {
+    prototype: HTMLMyBackdropElement;
+    new (): HTMLMyBackdropElement;
+  };
 
   interface HTMLMyComponentElement extends Components.MyComponent, HTMLStencilElement {}
   var HTMLMyComponentElement: {
@@ -153,11 +172,19 @@ declare global {
     new (): HTMLMyModalElement;
   };
 
+  interface HTMLMyModalBundleElement extends Components.MyModalBundle, HTMLStencilElement {}
+  var HTMLMyModalBundleElement: {
+    prototype: HTMLMyModalBundleElement;
+    new (): HTMLMyModalBundleElement;
+  };
+
   interface HTMLElementTagNameMap {
+    'my-backdrop': HTMLMyBackdropElement;
     'my-component': HTMLMyComponentElement;
     'my-component-2': HTMLMyComponent2Element;
     'my-embedded-component': HTMLMyEmbeddedComponentElement;
     'my-modal': HTMLMyModalElement;
+    'my-modal-bundle': HTMLMyModalBundleElement;
   }
 
   interface ElementTagNameMap extends HTMLElementTagNameMap {}

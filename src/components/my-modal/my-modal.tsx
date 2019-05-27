@@ -1,4 +1,12 @@
-import { Component, Prop, h, Method, Element, State } from '@stencil/core';
+import {
+    Component,
+    Prop,
+    h,
+    Element,
+    State,
+    Event,
+    EventEmitter
+} from '@stencil/core';
 // import { format } from '../../utils/utils';
 
 @Component({
@@ -10,9 +18,9 @@ export class MyModal {
 
     buttons: string[] = ['Okay', 'Cancel'];
 
-    @State() showOptions: boolean = false;
-
     @Element() modalEl: HTMLElement;
+
+    @State() showOptions: boolean = false;
 
     // title
     @Prop() title: string;
@@ -20,27 +28,31 @@ export class MyModal {
     // content
     @Prop() content: string;
 
-    @Method()
-    open(): void {
-        this.modalEl.style.display = 'block';
-    }
+    @Event() onClose: EventEmitter;
 
-    @Method()
-    close(): void {
-        this.modalEl.style.display = 'none';
-        this.showOptions = false;
-    }
+    // @Method()
+    // open(): void {
+    //     this.modalEl.style.display = 'block';
+    // }
+
+    // @Method()
+    // close(): void {
+    //     this.modalEl.style.display = 'none';
+    //     this.showOptions = false;
+    // }
 
     showOptionsHandler(): void {
         this.showOptions = true;
     }
 
-    openModalHandler(): void {
-        this.open();
-    }
+    // openModalHandler(): void {
+    //     this.open();
+    // }
 
     closeModalHandler(): void {
-        this.close();
+        // this.close();
+        this.showOptions = false;
+        this.onClose.emit();
     }
 
     // private getText(): string {
