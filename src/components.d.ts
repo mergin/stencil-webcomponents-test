@@ -23,7 +23,35 @@ export namespace Components {
     */
     'middle': string;
   }
+  interface MyComponent2 {
+    /**
+    * The first name
+    */
+    'first': string;
+    /**
+    * The last name
+    */
+    'last': string;
+    /**
+    * The middle name
+    */
+    'middle': string;
+  }
   interface MyEmbeddedComponent {
+    /**
+    * The first name
+    */
+    'first': string;
+    /**
+    * The last name
+    */
+    'last': string;
+    /**
+    * The middle name
+    */
+    'middle': string;
+  }
+  interface MyModal {
     /**
     * The first name
     */
@@ -54,7 +82,35 @@ declare namespace LocalJSX {
     */
     'middle'?: string;
   }
+  interface MyComponent2 extends JSXBase.HTMLAttributes {
+    /**
+    * The first name
+    */
+    'first'?: string;
+    /**
+    * The last name
+    */
+    'last'?: string;
+    /**
+    * The middle name
+    */
+    'middle'?: string;
+  }
   interface MyEmbeddedComponent extends JSXBase.HTMLAttributes {
+    /**
+    * The first name
+    */
+    'first'?: string;
+    /**
+    * The last name
+    */
+    'last'?: string;
+    /**
+    * The middle name
+    */
+    'middle'?: string;
+  }
+  interface MyModal extends JSXBase.HTMLAttributes {
     /**
     * The first name
     */
@@ -71,7 +127,9 @@ declare namespace LocalJSX {
 
   interface IntrinsicElements {
     'my-component': MyComponent;
+    'my-component-2': MyComponent2;
     'my-embedded-component': MyEmbeddedComponent;
+    'my-modal': MyModal;
   }
 }
 
@@ -95,15 +153,29 @@ declare global {
     new (): HTMLMyComponentElement;
   };
 
+  interface HTMLMyComponent2Element extends Components.MyComponent2, HTMLStencilElement {}
+  var HTMLMyComponent2Element: {
+    prototype: HTMLMyComponent2Element;
+    new (): HTMLMyComponent2Element;
+  };
+
   interface HTMLMyEmbeddedComponentElement extends Components.MyEmbeddedComponent, HTMLStencilElement {}
   var HTMLMyEmbeddedComponentElement: {
     prototype: HTMLMyEmbeddedComponentElement;
     new (): HTMLMyEmbeddedComponentElement;
   };
 
+  interface HTMLMyModalElement extends Components.MyModal, HTMLStencilElement {}
+  var HTMLMyModalElement: {
+    prototype: HTMLMyModalElement;
+    new (): HTMLMyModalElement;
+  };
+
   interface HTMLElementTagNameMap {
     'my-component': HTMLMyComponentElement;
+    'my-component-2': HTMLMyComponent2Element;
     'my-embedded-component': HTMLMyEmbeddedComponentElement;
+    'my-modal': HTMLMyModalElement;
   }
 
   interface ElementTagNameMap extends HTMLElementTagNameMap {}
